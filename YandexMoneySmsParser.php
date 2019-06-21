@@ -23,7 +23,7 @@ class YandexMoneySmsParser {
             if ($summ = self::_getSumm($string)) {
                 if ($wallet = self::_getWallet($string)) {
                     return [
-                        'code' => trim($code[0]),
+                        'code' => mb_substr($code[0], 1, 4),
                         'summ' => $summ[1],
                         'wallet' => $wallet[0],
                     ];
