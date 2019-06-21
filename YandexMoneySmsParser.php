@@ -2,8 +2,8 @@
 
 class YandexMoneySmsParser {
 
-    private static $_codePattern = '/\d{4}/';
-    private static $_summPattern = '/\d*[.,]\d{2}/';
+    private static $_codePattern = '/\D(\d{4})$|\D(\d{4})\D/';
+    private static $_summPattern = '/(\d*[.,]\d{2})\D/';
     private static $_walletPattern = '/\d{14}/';
 
     /**
@@ -23,8 +23,8 @@ class YandexMoneySmsParser {
             if ($summ = self::_getSumm($string)) {
                 if ($wallet = self::_getWallet($string)) {
                     return [
-                        'code' => $code[0],
-                        'summ' => $summ[0],
+                        'code' => trim($code[0]),
+                        'summ' => $summ[1],
                         'wallet' => $wallet[0],
                     ];
                 }
