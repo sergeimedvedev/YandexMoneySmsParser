@@ -3,14 +3,15 @@
 ``` Пароль: 6670 Спишется 1,01р. Перевод на счет 41001513101722 ```
 
 ```sh
-require_once 'YandexMoneySmsParser.php';
 $result = YandexMoneySmsParser::getData($string);
 ```
 
 На выходе отдает массив:
+
 | Key      | Value |
 | ------- | ------------------|
 | code   | SMS-код подтверждения |
 | summ | Сумма платежа |
 | wallet | ЯД кошелек |
+
 либо **false**, если не передан хотя бы один параметр.
